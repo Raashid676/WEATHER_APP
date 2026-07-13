@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+}
+
+/* Bulletproof centering - ignores whatever the parent container does */
+.weather {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: clamp(24px, 4vw, 48px) clamp(20px, 3.5vw, 42px);
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(47, 70, 128, 0.85), rgba(80, 10, 228, 0.85));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    0 20px 60px rgba(80, 10, 228, 0.35),
+    0 8px 20px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* THIS is what makes it visibly shrink/grow with the window */
+  width: clamp(280px, 30vw, 420px);
+
+  animation: fadeInUp 0.7s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, width 0.2s ease;
+}
+
+.weather:hover {
+  transform: translate(-50%, -50%) translateY(-6px);
+  box-shadow:
+    0 28px 70px rgba(80, 10, 228, 0.45),
+    0 10px 25px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translate(-50%, -50%) translateY(30px); }
+  to { opacity: 1; transform: translate(-50%, -50%) translateY(0); }
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.search-bar input {
+  flex: 1;
+  min-width: 0;
+  height: clamp(42px, 5vw, 52px);
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  padding-left: 22px;
+  color: #4a4a4a;
+  background: rgba(235, 255, 252, 0.95);
+  font-size: clamp(14px, 2vw, 16px);
+  font-family: 'Poppins', sans-serif;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.search-bar input::placeholder {
+  color: #9a9a9a;
+}
+
+.search-bar input:focus {
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+}
+
+
+.search-bar img {
+  width: clamp(42px, 5vw, 52px);
+  height: clamp(42px, 5vw, 52px);
+  padding: 13px;
+  border-radius: 50%;
+  background: rgba(235, 255, 252, 0.95);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.search-bar img:hover {
+  background: #ffffff;
+  transform: scale(1.1) rotate(8deg);
+}
+
+.search-bar img:active {
+  transform: scale(0.95);
+}
+
+.weather-icon {
+  width: clamp(90px, 14vw, 150px);
+  margin: clamp(20px, 3vw, 30px) 0 10px;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.25));
+  animation: floatIcon 4s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.tempreture {
+  color: #fff;
+  font-size: clamp(48px, 9vw, 72px);
+  font-weight: 600;
+  line-height: 1;
+  margin: 10px 0 0;
+  letter-spacing: -2px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.location {
+  color: #fff;
+  font-size: clamp(20px, 4vw, 28px);
+  font-weight: 400;
+  margin: 8px 0 0;
+  opacity: 0.9;
+  letter-spacing: 1px;
+}
+
+.weather-data {
+  width: 100%;
+  margin-top: clamp(24px, 4vw, 40px);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.weather-data .col {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.08);
+  padding: clamp(10px, 2vw, 14px) clamp(12px, 2.5vw, 18px);
+  border-radius: 14px;
+  flex: 1 1 130px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.weather-data .col:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-3px);
+}
+
+.weather-data .col span {
+  display: block;
+  font-size: clamp(12px, 2vw, 14px);
+  font-weight: 300;
+  margin-top: 2px;
+  opacity: 0.85;
+}
+
+.weather-data .col img {
+  width: clamp(20px, 3vw, 26px);
+  margin-top: 4px;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
